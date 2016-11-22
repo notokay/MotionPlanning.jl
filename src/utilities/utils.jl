@@ -109,7 +109,7 @@ immutable SparseVectorSub{Tv,Ti<:Integer} <: AbstractSparseVector{Tv,Ti}
 
     function SparseVectorSub(n::Integer, nzind::CVecSub{Ti}, nzval::CVecSub{Tv})
         n >= 0 || throw(ArgumentError("The number of elements must be non-negative."))
-        nzind.dims == nzval.dims || throw(DimensionMismatch("The lengths of nzind and nzval are inconsistent."))
+        size(nzind) == size(nzval) || throw(DimensionMismatch("The lengths of nzind and nzval are inconsistent."))
         new(convert(Int, n), nzind, nzval)
     end
 end
